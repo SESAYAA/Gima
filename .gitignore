@@ -9,6 +9,13 @@ tmp/
 out-tsc/
 .angular/cache/
 
+# Environment files with secrets — copy from environment.example.ts
+gima-agric-frontend/src/environments/environment.ts
+gima-agric-frontend/src/environments/environment.prod.ts
+
+# Firebase service account (backend)
+gima-agric-backend/firebase-service-account.json
+
 # Gradle
 .gradle/
 build/
