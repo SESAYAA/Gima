@@ -6,5 +6,7 @@ export const firebaseConfig: FirebaseOptions = {
   projectId: 'gima-agric-project',
   storageBucket: 'gima-agric-project.firebasestorage.app',
   messagingSenderId: '743118501665',
-  appId: '1:743118501665:web:caac881c3b47d423b27060'
+  appId: '1:743118501665:web:caac881c3b47d423b27060',
+  // Get measurementId from Firebase Console → Project Settings → Your apps
+  measurementId: 'G-XXXXXXXXXX'
 };
