@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:gima-agric-super-secret-key-change-in-production-2024}
+    expiration-ms: 86400000  # 24 hours
+
+  firebase:
+    project-id: gima-agric-project
+    credentials-path: ${FIREBASE_CREDENTIALS_PATH:firebase-service-account.json}
+
+  mail:
+    to: ${COMPANY_EMAIL:info@gimasl.com}
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  web:
+    cors:
+      allowed-origins: "http://localhost:4200"

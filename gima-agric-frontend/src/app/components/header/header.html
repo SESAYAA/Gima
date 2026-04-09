@@ -1,0 +1,24 @@
+<header id="header" class="header d-flex align-items-center position-relative">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+    <a routerLink="/" class="logo d-flex align-items-center">
+      <img src="assets/img/logo1.png" alt="Gima Agric">
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMobileNav()">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="closeMobileNav()">About Us</a></li>
+        <li><a routerLink="/services" routerLinkActive="active" (click)="closeMobileNav()">Our Services</a></li>
+        <li><a routerLink="/testimonials" routerLinkActive="active" (click)="closeMobileNav()">Testimonials</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active" (click)="closeMobileNav()">Blog</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileNav()">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi"
+         [class.bi-list]="!mobileNavActive"
+         [class.bi-x]="mobileNavActive"
+         (click)="toggleMobileNav()"></i>
+    </nav>
+
+  </div>
+</header>
