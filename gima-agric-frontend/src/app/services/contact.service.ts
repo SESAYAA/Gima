@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, addDoc, serverTimestamp } from '@angular/fire/firestore';
-import { Observable, from } from 'rxjs';
+import { Observable, from, timeout, catchError, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface ContactMessage {
@@ -22,6 +22,10 @@ export class ContactService {
         status: 'unread',
         createdAt: serverTimestamp()
       })
-    ).pipe(map(() => void 0));
+    ).pipe(
+      timeout(5000),
+      map(() => void 0),
+      catchError(() => throwError(() => new Error('Request timed out')))
+    );
   }
 }

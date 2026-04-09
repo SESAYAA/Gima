@@ -5,10 +5,9 @@
     <div class="container position-relative">
       <h1>Contact</h1>
       <nav class="breadcrumbs">
-        <ol>
-          <li><a routerLink="/">Home</a></li>
-          <li class="current">Contact</li>
-        </ol>
+        <p> Whether you want to know more about our services, collaborate with us, or just say hello, fill out the form below.
+          Your message is important to us and we strive to respond promptly. </p>
+        <p> We’re always happy to hear from you. Don’t hesitate to send your thoughts, suggestions, or inquiries. </p>
       </nav>
     </div>
   </div>
@@ -16,17 +15,21 @@
   <!-- Contact Section -->
   <section id="contact" class="contact section">
 
-    <div class="mb-5">
-      <!-- OpenStreetMap satellite view centered on Freetown, Sierra Leone -->
+    <div class="map-wrapper mb-5">
+      <!-- OpenStreetMap pinned on 81 Fort Street, Freetown (~8.4903, -13.2344) -->
       <iframe
-        style="width: 100%; height: 400px; border: 0;"
+        style="width: 100%; height: 400px; border: 0; display: block; pointer-events: none;"
         loading="lazy"
         allowfullscreen
-        title="Gima Agric SL Ltd - Freetown, Sierra Leone"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-13.2800%2C8.4200%2C-13.1800%2C8.5100&layer=hot&marker=8.4657%2C-13.2317">
+        title="Gima Agric SL Ltd - 81 Fort Street, Freetown, Sierra Leone"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-13.2444%2C8.4803%2C-13.2244%2C8.5003&layer=hot&marker=8.4903%2C-13.2344"
+        id="contact-map">
       </iframe>
+      <div class="map-overlay" (click)="enableMap($event)">
+        <span><i class="bi bi-hand-index-thumb me-2"></i>Click to interact with map</span>
+      </div>
       <div class="text-end mt-1">
-        <a href="https://www.openstreetmap.org/?mlat=8.4657&mlon=-13.2317#map=14/8.4657/-13.2317" target="_blank" rel="noopener" style="font-size:12px; color:#888;">
+        <a href="https://www.openstreetmap.org/?mlat=8.4903&mlon=-13.2344#map=17/8.4903/-13.2344" target="_blank" rel="noopener" style="font-size:12px; color:#888;">
           View larger map
         </a>
       </div>
@@ -36,30 +39,30 @@
       <div class="row gy-5 gx-lg-5">
 
         <div class="col-lg-4">
-          <div class="info">
+          <div class="contact-info-card">
             <h3>Get in touch</h3>
-            <p>Send us a message and lets be a partner</p>
+            <p class="subtitle">Send us a message and let's be a partner</p>
 
-            <div class="info-item d-flex">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
+            <div class="info-item">
+              <div class="info-icon"><i class="bi bi-geo-alt-fill"></i></div>
               <div>
-                <h4>Location:</h4>
-                <p>81 Fort Street, Freetown Sierra Leone</p>
+                <h4>Location</h4>
+                <p>81 Fort Street, Freetown, Sierra Leone</p>
               </div>
             </div>
 
-            <div class="info-item d-flex">
-              <i class="bi bi-envelope flex-shrink-0"></i>
+            <div class="info-item">
+              <div class="info-icon"><i class="bi bi-envelope-fill"></i></div>
               <div>
-                <h4>Email:</h4>
+                <h4>Email</h4>
                 <p>info&#64;gimasl.com</p>
               </div>
             </div>
 
-            <div class="info-item d-flex">
-              <i class="bi bi-phone flex-shrink-0"></i>
+            <div class="info-item">
+              <div class="info-icon"><i class="bi bi-telephone-fill"></i></div>
               <div>
-                <h4>Call:</h4>
+                <h4>Phone</h4>
                 <p>+232 73-679-669</p>
               </div>
             </div>
@@ -67,37 +70,52 @@
         </div>
 
         <div class="col-lg-8">
-          <form (ngSubmit)="onSubmit()" #contactForm="ngForm" role="form" class="php-email-form">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" [(ngModel)]="formData.name" placeholder="Your Name" required>
+          <div class="contact-form-card">
+            <h3>Send a Message</h3>
+            <form (ngSubmit)="onSubmit()" #contactForm="ngForm" role="form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" id="name" name="name" class="form-control" [(ngModel)]="formData.name" placeholder="Your Name" required>
+                    <label for="name">Your Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="email" id="email" name="email" class="form-control" [(ngModel)]="formData.email" placeholder="Your Email" required>
+                    <label for="email">Your Email</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="text" id="subject" name="subject" class="form-control" [(ngModel)]="formData.subject" placeholder="Subject" required>
+                    <label for="subject">Subject</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <textarea id="message" name="message" class="form-control" [(ngModel)]="formData.message" placeholder="Message" required style="height: 150px;"></textarea>
+                    <label for="message">Your Message</label>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" [(ngModel)]="formData.email" placeholder="Your Email" required>
+
+              <div *ngIf="success" class="alert-success-custom mt-3">
+                <i class="bi bi-check-circle-fill me-2"></i>Message sent! We'll reply to your email shortly.
               </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" [(ngModel)]="formData.subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" [(ngModel)]="formData.message" placeholder="Message" required></textarea>
-            </div>
+              <div *ngIf="error" class="alert-error-custom mt-3">
+                <i class="bi bi-exclamation-circle-fill me-2"></i>{{ error }}
+              </div>
 
-            <div *ngIf="success" class="alert alert-success mt-3">
-              <i class="bi bi-check-circle me-2"></i>
-              Your message has been sent. We'll reply to your email shortly.
-            </div>
-            <div *ngIf="error" class="alert alert-danger mt-3">
-              <i class="bi bi-exclamation-circle me-2"></i>{{ error }}
-            </div>
-
-            <div class="text-center mt-3">
-              <button type="submit" [disabled]="loading || contactForm.invalid">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-                {{ loading ? 'Sending...' : 'Send Message' }}
-              </button>
-            </div>
-          </form>
+              <div class="text-end mt-4">
+                <button type="submit" class="btn-send" [disabled]="loading || contactForm.invalid">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                  <i *ngIf="!loading" class="bi bi-send-fill me-2"></i>
+                  {{ loading ? 'Sending...' : 'Send Message' }}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
 
       </div>

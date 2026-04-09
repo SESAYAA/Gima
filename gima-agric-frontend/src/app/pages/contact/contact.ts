@@ -19,6 +19,13 @@ export class Contact {
 
   constructor(private contactService: ContactService) {}
 
+  enableMap(event: Event): void {
+    const overlay = event.currentTarget as HTMLElement;
+    overlay.style.display = 'none';
+    const map = document.getElementById('contact-map') as HTMLIFrameElement;
+    if (map) map.style.pointerEvents = 'auto';
+  }
+
   onSubmit(): void {
     this.loading = true;
     this.success = false;
